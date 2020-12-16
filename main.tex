@@ -1,0 +1,133 @@
+\documentclass[10.5pt,a4j]{ujreport}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage[dvipdfmx]{graphicx}
+%---------------------------------------------------
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{bm}
+%---------------------------------------------------
+% chapterで改ページしない
+\makeatletter
+\renewcommand{\chapter}{%
+  \if@openright\cleardoublepage\fi
+  \thispagestyle{jpl@in}%
+  \global\@topnum\z@
+  \@afterindenttrue
+  \secdef\@chapter\@schapter}
+\makeatother
+%---------------------------------------------------
+% eqnarrayで等号の両端のスペースを小さくする
+\setlength\arraycolsep{1.5pt}
+%---------------------------------------------------
+
+%---------------------------------------------------
+% 表紙
+%---------------------------------------------------
+\title{
+  {\Huge
+    修　士　学　位　論　文
+  }
+  \\[3cm]
+  {\Huge
+    〇〇についての研究
+  }
+  \\[5cm]
+}
+
+\author{
+  {\huge
+    氏名
+  }\\[0.5cm]
+  東京大学 大学院学際情報学府\\
+  学際情報学専攻 生物統計情報学コース\\
+  49-186608\\[0.5cm]
+  指導教員　〇〇〇〇 教授
+}
+\date{\Large 令和元年度}
+
+
+\begin{document}
+\maketitle
+
+
+%---------------------------------------------------
+% 抄録
+%---------------------------------------------------
+\chapter*{抄録}
+抄録を記述する．
+
+
+%---------------------------------------------------
+% 序論
+%---------------------------------------------------
+\chapter{序論}
+\pagenumbering{arabic}
+
+\section{背景}
+背景を記述する．
+
+
+\section{目的}
+目的を記述する．
+
+
+\chapter{方法}
+方法を記述する．
+
+
+\chapter{結果と考察}
+結果と考察を記述する．
+
+
+\chapter{結論}
+結論を記述する．
+
+
+%---------------------------------------------------
+% 謝辞
+%---------------------------------------------------
+\chapter*{謝辞}
+\addcontentsline{toc}{chapter}{謝辞}
+本研究を行うに当たり，多大なるご理解とご指導を頂きました〇〇教授に心より御礼申し上げます．
+
+
+%---------------------------------------------------
+% 参考文献
+%---------------------------------------------------
+\renewcommand{\bibname}{参考文献}
+\addcontentsline{toc}{chapter}{参考文献}
+\bibliography{bibliography} %hoge.bibから拡張子を外した名前
+\bibliographystyle{unsrt} %参考文献出力スタイル
+
+
+%---------------------------------------------------
+% 図表
+%---------------------------------------------------
+\chapter*{図表（通し番号とする）}
+\addcontentsline{toc}{chapter}{図表（通し番号とする）}
+
+% 図・表を通し番号にする
+\makeatletter
+\def\delete#1from#2{%
+\def\reserved@a{#1}%
+\def\reserved@c{}%
+\def\@elt##1{%
+\def\reserved@b{##1}%
+\ifx\reserved@a\reserved@b
+\else
+\@cons\reserved@c{{##1}}%
+\fi}%
+\csname cl@#2\endcsname
+\expandafter\let\csname cl@#2\endcsname\reserved@c
+\let\@elt\relax}
+\makeatother
+\delete{figure}from{chapter}
+\renewcommand*{\thefigure}{\arabic{figure}}
+\delete{table}from{chapter}
+\renewcommand*{\thetable}{\arabic{table}}
+
+
+図表を記述する．
+
+
+\end{document}
